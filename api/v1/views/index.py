@@ -14,7 +14,6 @@ from models.place import Place
 from models.review import Review
 
 
-
 @app_views.route('/status', strict_slashes=False)
 def status():
     """status"""
@@ -33,4 +32,3 @@ def stats():
     return jsonify({"amenities": amenities, "cities": cities,
                     "places": places, "reviews": reviews,
                     "states": states, "users": users})
-
