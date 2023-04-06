@@ -8,6 +8,7 @@ from api.v1.views import app_views
 from models import storage
 from models.place import Place
 from models.review import Review
+from models.user import User
 
 
 @app_views.route('/places/<place_id>/reviews', methods=['GET'],
@@ -56,6 +57,10 @@ def post_review(place_id):
         abort(400, "Missing user_id")
     if "text" not in request.get_json():
         abort(400, "Missing text")
+    user_id = request.get_json().get('user_id')
+    user = storage.get(User, user_id)
+    if user is None:
+        abort(404)
     review = Review(**request.get_json())
     review.place_id = place_id
     review.save()
