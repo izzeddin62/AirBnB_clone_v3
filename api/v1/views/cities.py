@@ -39,3 +39,20 @@ def delete_cities(city_id):
     city.delete()
     storage.save()
     return jsonify({})
+
+
+@app_views.route('/cities/<city_id>', methods=['POST'], strict_slashes=False)
+def post_cities(state_id):
+    """transform the HTTP body request to a dictionary"""
+    if request.method == 'POST':
+        data = request.get_json()
+        if not data:
+            return jsonify({'error': "Not a JSON"}), 400
+        name = data.get('name', None)
+
+        if name not in data:
+            abort(400, 'Missing name')
+        data['state_id'] = state_id
+        city = City(**data)
+        city.save()
+        return jsonify(city.to_dict()), 201
