@@ -41,7 +41,7 @@ def delete_cities(city_id):
     return jsonify({})
 
 
-@app_views.route('/states/<state_id>', methods=['POST'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities', methods=['POST'], strict_slashes=False)
 def creates_cities(state_id):
     """transform the HTTP body request to a dictionary"""
     if request.method == 'POST':
