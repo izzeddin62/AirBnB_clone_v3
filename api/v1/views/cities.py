@@ -6,6 +6,7 @@ from models import storage
 from models.city import City
 from models.state import State
 
+
 @app_views.route('/states/<state_id>/cities', strict_slashes=False)
 def get_cities(state_id):
     """get cities"""
@@ -18,6 +19,7 @@ def get_cities(state_id):
         if city.state_id == state_id:
             cities.append(city.to_dict())
     return jsonify(cities), 200
+
 
 @app_views.route('/cities/<city_id>', strict_slashes=False)
 def get_city(city_id):
