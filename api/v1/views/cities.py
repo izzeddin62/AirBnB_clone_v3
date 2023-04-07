@@ -42,14 +42,13 @@ def delete_cities(city_id):
 
 
 @app_views.route('/states/<state_id>', methods=['POST'], strict_slashes=False)
-def creates_cities(city_id):
+def creates_cities(state_id):
     """transform the HTTP body request to a dictionary"""
     if request.method == 'POST':
         data = request.get_json()
         if not data:
             return jsonify({'error': "Not a JSON"}), 400
         name = data.get('name', None)
-
         if not name:
             return jsonify({'error': 'Missing name'}), 400
         data['state_id'] = state_id
