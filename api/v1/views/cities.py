@@ -28,3 +28,14 @@ def get_city(city_id):
     if city is not None:
         return jsonify(city.to_dict())
     abort(404)
+
+
+@app_views.route('/cities/<city_id>', strict_slashes=False)
+def delete_cities(city_id):
+    """Deletes a specific city"""
+    city = storage.get(City, city_id)
+    if city is not None:
+        abort(404)
+    city.delete()
+    storage.save()
+    return jsonify({})
