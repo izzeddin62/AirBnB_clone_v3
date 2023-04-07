@@ -41,7 +41,7 @@ def delete_state(state_id):
 @app_views.route("/states/", strict_slashes=False, methods=['POST'])
 def post_states():
     """
-    Post a state 
+    Post a state
     """
     if not request.get_json():
         abort(400, "Not a JSON")
